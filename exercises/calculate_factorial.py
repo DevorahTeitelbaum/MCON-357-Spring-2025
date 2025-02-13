@@ -1,32 +1,36 @@
 # implemented factorial_recursive method
 def factorial_recursive(number):
-    # handle negative input
-    while number < 0:
-        number = int(input("Only positive values allowed. Enter a non-negative integer: "))
     if number > 0:
         return number * factorial_recursive(number - 1)
     elif number == 0:
         return 1;
-
+    else:
+        if number.__floor__() is not number:
+            print("Number is not an integer. cannot calculate")
+        else:
+            print("Number is negative. cannot calculate")
 
 def main():
     print("Factorial Computation Using Recursion")
-    number = handle_input()
-    print("Factorial of " + str(number) + " is: " + str(factorial_recursive(number)))
+    errorMessage = "e"
+    while errorMessage is not None:
+        number = str(input("Enter a non-negative integer: "))
+        number, errorMessage = handle_input(number)
+        if errorMessage is not None:
+            print(errorMessage)
 
-def handle_input():
-    isBadInput = True
-    number = .5
-    while isBadInput:
-        try:
-            number = int(input("Enter a non-negative integer: "))
-            if number < 0:
-                print("Please enter a non-negative integer.")
-            else:
-                isBadInput = False
-        except ValueError:
-            print("Invalid input! Please enter a valid integer.")
-    return number
+
+    print("Factorial of " + str(int(number)) + " is: " + str(factorial_recursive(int(number))))
+
+def handle_input(number):
+    try:
+        number = int(number)
+        if number < 0:
+            return None, "Number cannot be negative"
+        else :
+            return number, None
+    except ValueError:
+        return None, "Number must be an integer"
 
 if __name__ == "__main__":
     main()
