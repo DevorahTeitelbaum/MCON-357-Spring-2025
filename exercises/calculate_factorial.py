@@ -11,6 +11,10 @@ def factorial_recursive(number):
 
 def main():
     print("Factorial Computation Using Recursion")
+    number = handle_input()
+    print("Factorial of " + str(number) + " is: " + str(factorial_recursive(number)))
+
+def handle_input():
     isBadInput = True
     number = .5
     while isBadInput:
@@ -22,10 +26,7 @@ def main():
                 isBadInput = False
         except ValueError:
             print("Invalid input! Please enter a valid integer.")
-
-
-    print("Factorial of " + str(number) + " is: " + str(factorial_recursive(number)))
-
+    return number
 
 if __name__ == "__main__":
     main()
