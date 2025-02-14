@@ -1,9 +1,13 @@
 # implemented factorial_recursive method
 import sys
 
-
+# implemented factorial_recursive method
 def factorial_recursive(number):
-    if number > 0:
+    if number > 2:
+        return (number * (number - 1)) * factorial_recursive(number - 2)
+    elif number == 2:
+        return 2
+    elif number == 1:
         return number * factorial_recursive(number - 1)
     elif number == 0:
         return 1
@@ -14,14 +18,13 @@ def factorial_recursive(number):
             print("Number is negative. cannot calculate")
 
 
-# implemented factorial_recursive method
+# implemented factorial_iterative method
 def factorial_iterative(number):
     if number >= 0:
         total = 1
         for i in range(number + 1):
             if i > 0:
                 total = total * i
-            i = i - 1
         return total
     else:
         if number.__floor__() is not number:
