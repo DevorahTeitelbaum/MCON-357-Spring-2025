@@ -3,7 +3,21 @@ def factorial_recursive(number):
     if number > 0:
         return number * factorial_recursive(number - 1)
     elif number == 0:
-        return 1;
+        return 1
+    else:
+        if number.__floor__() is not number:
+            print("Number is not an integer. cannot calculate")
+        else:
+            print("Number is negative. cannot calculate")
+
+def factorial_iterative(number):
+    if number > 0:
+        total = 1
+        for i in range(number+1):
+            if i > 0:
+                total = total*i
+            i = i-1
+        return total
     else:
         if number.__floor__() is not number:
             print("Number is not an integer. cannot calculate")
@@ -20,7 +34,7 @@ def main():
             print(errorMessage)
 
 
-    print("Factorial of " + str(int(number)) + " is: " + str(factorial_recursive(int(number))))
+    print("Factorial of " + str(int(number)) + " is: " + str(factorial_iterative(int(number))))
 
 def handle_input(number):
     try:
