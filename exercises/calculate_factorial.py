@@ -1,36 +1,22 @@
-# implemented factorial_recursive method
 import sys
+
 
 # implemented factorial_recursive method
 def factorial_recursive(number):
-    if number > 2:
-        return (number * (number - 1)) * factorial_recursive(number - 2)
-    elif number == 2:
-        return 2
-    elif number == 1:
-        return number * factorial_recursive(number - 1)
-    elif number == 0:
-        return 1
+    if number >= 1:
+        return number * factorial_recursive(number-1)
+    #base case, number == 0
     else:
-        if number.__floor__() is not number:
-            print("Number is not an integer. cannot calculate")
-        else:
-            print("Number is negative. cannot calculate")
+        return 1
 
 
 # implemented factorial_iterative method
 def factorial_iterative(number):
-    if number >= 0:
-        total = 1
-        for i in range(number + 1):
-            if i > 0:
-                total = total * i
-        return total
-    else:
-        if number.__floor__() is not number:
-            print("Number is not an integer. cannot calculate")
-        else:
-            print("Number is negative. cannot calculate")
+    total = 1
+    for i in range(number + 1):
+        if i > 0:
+            total = total * i
+    return total
 
 
 # main method to run factorial methods
@@ -38,11 +24,14 @@ def main():
     print("Factorial Computation Using Recursion")
     errorMessage = "e"
     while errorMessage is not None:
-        number = str(input("Enter a non-negative integer: "))
+        number = input("Enter a non-negative integer: ")
         number, errorMessage = handle_input(number)
         if errorMessage is not None:
             print(errorMessage)
-    print("Factorial of " + str(int(number)) + " is: " + str(factorial_recursive(int(number))))
+    if number >= sys.getrecursionlimit():
+        print(f"Factorial of {number} is {factorial_recursive(number)}")
+    else:
+        print(f"Factorial of {number} is {factorial_iterative(number)}")
 
 
 # input handler to ensure only applicable numbers enter the factorial methods
