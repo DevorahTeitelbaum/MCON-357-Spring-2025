@@ -9,7 +9,6 @@ def factorial_recursive(number):
     else:
         return 1
 
-
 # implemented factorial_iterative method
 def factorial_iterative(number):
     total = 1
@@ -28,7 +27,7 @@ def main():
         number, errorMessage = handle_input(number)
         if errorMessage is not None:
             print(errorMessage)
-    if number >= sys.getrecursionlimit():
+    if number < sys.getrecursionlimit():
         print(f"Factorial of {number} is {factorial_recursive(number)}")
     else:
         print(f"Factorial of {number} is {factorial_iterative(number)}")
